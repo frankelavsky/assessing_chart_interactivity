@@ -1,7 +1,7 @@
 props = {
     'line-chart': {
         mainTitle: 'Product A is trending up this year',
-        subTitle: '(An example line chart that can be navigated with a keyboard and screen reader!)',
+        subTitle: 'Product A initiated its launch with 12 clients and our internal marketing personnel cultivated 27 new acquisitions by the close of the calendar year.',
         valueAccessor: 'value',
         ordinalAccessor: 'date',
         seriesAccessor: 'category',
@@ -17,11 +17,6 @@ props = {
         highestHeadingLevel: 'h1',
         legend: {visible: false},
         accessibility: {
-            elementDescriptionAccessor: "Note",
-            longDescription:
-              "This line chart is trending upwards.",
-            executiveSummary:
-              "We started the year with a value of 12, but now our product value has more than tripled, to 39 total.",
             elementsAreInterface: false,
             disableValidation: true,
             hideStrokes: false
