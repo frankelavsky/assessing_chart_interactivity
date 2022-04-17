@@ -1,14 +1,16 @@
 props = {
     'line-chart': {
-        mainTitle: 'Product A is trending up this year',
-        subTitle: 'Product A initiated its launch with 12 clients and our internal marketing personnel cultivated 27 new acquisitions by the close of the calendar year.',
-        valueAccessor: 'value',
+        mainTitle: 'Product AC is trending up, Product AB is tanking',
+        subTitle: 'Product AC initiated its launch with 12 clients and our internal marketing personnel cultivated 27 new acquisitions by the close of the calendar year. Product AB started with 42 clients and after a controversy in June, dropped to 4 by Decemeber.',
+        valueAccessor: 'clients',
         ordinalAccessor: 'date',
-        seriesAccessor: 'category',
+        seriesAccessor: 'product',
         uniqueID: 'line',
-        padding: { top: 20, bottom: 20, left: 40, right: 80},
+        width: 795,
+        height: 400,
+        padding: { top: 20, bottom: 20, left: 40, right: 100},
         margin: { top: 0, bottom: 40, left: 0, right: 0},
-        colors: ["#fefeff"],
+        colors: ["#fefeff","#ffffff"],
         yAxis: { label: "", visible: false, gridVisible: false },
         xAxis: { label: "", visible: true },
         showBaselineX: false,
@@ -23,64 +25,124 @@ props = {
         },
         data: [
         {
-            value: 12,
+            clients: 12,
             date: 'Jan',
-            category: 'Product A'
+            product: 'AC'
         },
         {
-            value: 13,
+            clients: 13,
             date: 'Feb',
-            category: 'Product A'
+            product: 'AC'
         },
         {
-            value: 15,
+            clients: 15,
             date: 'Mar',
-            category: 'Product A'
+            product: 'AC'
         },
         {
-            value: 14,
+            clients: 14,
             date: 'Apr',
-            category: 'Product A'
+            product: 'AC'
         },
         {
-            value: 14,
+            clients: 14,
             date: 'May',
-            category: 'Product A'
+            product: 'AC'
         },
         {
-            value: 18,
+            clients: 16,
             date: 'Jun',
-            category: 'Product A'
+            product: 'AC'
         },
         {
-            value: 17,
+            clients: 14,
             date: 'Jul',
-            category: 'Product A'
+            product: 'AC'
         },
         {
-            value: 19,
+            clients: 17,
             date: 'Aug',
-            category: 'Product A'
+            product: 'AC'
         },
         {
-            value: 24,
+            clients: 23,
             date: 'Sep',
-            category: 'Product A'
+            product: 'AC'
         },
         {
-            value: 23,
+            clients: 22,
             date: 'Oct',
-            category: 'Product A'
+            product: 'AC'
         },
         {
-            value: 29,
+            clients: 28,
             date: 'Nov',
-            category: 'Product A'
+            product: 'AC'
         },
         {
-            value: 39,
+            clients: 39,
             date: 'Dec',
-            category: 'Product A'
+            product: 'AC'
+        },
+        {
+            clients: 42,
+            date: 'Jan',
+            product: 'AB'
+        },
+        {
+            clients: 44,
+            date: 'Feb',
+            product: 'AB'
+        },
+        {
+            clients: 46,
+            date: 'Mar',
+            product: 'AB'
+        },
+        {
+            clients: 48,
+            date: 'Apr',
+            product: 'AB'
+        },
+        {
+            clients: 51,
+            date: 'May',
+            product: 'AB'
+        },
+        {
+            clients: 50,
+            date: 'Jun',
+            product: 'AB'
+        },
+        {
+            clients: 37,
+            date: 'Jul',
+            product: 'AB'
+        },
+        {
+            clients: 24,
+            date: 'Aug',
+            product: 'AB'
+        },
+        {
+            clients: 17,
+            date: 'Sep',
+            product: 'AB'
+        },
+        {
+            clients: 11,
+            date: 'Oct',
+            product: 'AB'
+        },
+        {
+            clients: 6,
+            date: 'Nov',
+            product: 'AB'
+        },
+        {
+            clients: 4,
+            date: 'Dec',
+            product: 'AB'
         }
         ]
   }
