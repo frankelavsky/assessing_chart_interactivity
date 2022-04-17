@@ -3,11 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <title>Assessing Chart Interactivity</title>
-    <link href="src/styles.css" rel="stylesheet">
+    <link href="src/styles.css" rel="stylesheet" />
   </head>
   <body>
     <main>
       <div id="line-insert"></div>
+      <div>
+        <p class="keyboard-log">
+          Key log:
+          <span class="hidden" id="Shift"><kbd>Shift</kbd> + </span>
+          <span class="hidden" id="Control"><kbd>Control</kbd> + </span>
+          <span class="hidden" id="Alt"><kbd>Alt</kbd> + </span>
+          <span class="hidden" id="Command"><kbd>Command</kbd> + </span>
+          <kbd id="keyboard-log"></kbd>
+          <span id="count"></span>
+        </p>
+      </div>
     </main>
     <script src="https://unpkg.com/@visa/visa-charts-data-table/dist/visa-charts-data-table/visa-charts-data-table.js?module"></script>
     <script src="https://unpkg.com/@visa/keyboard-instructions/dist/keyboard-instructions/keyboard-instructions.js?module"></script>

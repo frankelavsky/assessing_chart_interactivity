@@ -163,4 +163,78 @@ const line = chartConstructor('line-chart', props['line-chart'].uniqueID);
 
 document.getElementById('line-insert').appendChild(line);
 
-console.log('hi', line);
+console.log('Hi! Welcome to our testing environment. :)');
+
+let currentEvent = [{}];
+const monitorAllEvents = element => {
+  const log = e => {
+    const keyMap = {
+      shift: 'Shift',
+      Shift: 'Shift',
+      SHIFT: 'Shift',
+      control: 'Control',
+      Control: 'Control',
+      CONTROL: 'Control',
+      alt: 'Alt',
+      Alt: 'Alt',
+      ALT: 'Alt',
+      meta: 'Command',
+      Meta: 'Command',
+      META: 'Command'
+    };
+    const isValid = keyLiteral => {
+      return !(
+        keyLiteral === 'shift' ||
+        keyLiteral === 'Shift' ||
+        keyLiteral === 'SHIFT' ||
+        keyLiteral === 'control' ||
+        keyLiteral === 'Control' ||
+        keyLiteral === 'CONTROL' ||
+        keyLiteral === 'alt' ||
+        keyLiteral === 'Alt' ||
+        keyLiteral === 'ALT' ||
+        keyLiteral === 'meta' ||
+        keyLiteral === 'Meta' ||
+        keyLiteral === 'META'
+      );
+    };
+    if (e.key && e.type === 'keyup' && isValid(e.key)) {
+      let key = e.key;
+      if (key === ' ') {
+        key = 'Spacebar';
+      }
+      if (currentEvent[0].key === key) {
+        currentEvent[0].rawCount++;
+      } else {
+        currentEvent.pop();
+        currentEvent.push({
+          key,
+          count: 1,
+          rawCount: 1
+        });
+      }
+      // if ((currentEvent[0].key === 'Spacebar' || currentEvent[0].key === 'tab' || currentEvent[0].key === 'TAB' || currentEvent[0].key === 'Tab') && !(currentEvent[0].rawCount % 2)) {
+      //     console.log("hehe")
+      //     currentEvent[0].count = currentEvent[0].rawCount/2
+      // } else {
+      currentEvent[0].count = currentEvent[0].rawCount;
+      // }
+      document.getElementById('keyboard-log').innerText = currentEvent[0].key;
+      document.getElementById('count').innerText = ` x ${currentEvent[0].count}`;
+    } else if (e.key && (e.type === 'keyup' || e.type === 'keydown')) {
+      const target = document.getElementById(keyMap[e.key]);
+      if (target) {
+        target.classList[e.type === 'keyup' ? 'add' : 'remove']('hidden');
+      }
+    }
+  };
+  var events = [];
+
+  for (var i in element) {
+    if (i.startsWith('on')) events.push(i.substr(2));
+  }
+  events.forEach(function (eventName) {
+    element.addEventListener(eventName, log);
+  });
+};
+monitorAllEvents(window);

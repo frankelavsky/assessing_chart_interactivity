@@ -20,3 +20,31 @@ body {
   font-weight: bold;
   font-size: 120%;
 }
+
+.keyboard-log {
+  font-size: 170%;
+  width: fit-content;
+  margin: 20px;
+}
+
+kbd {
+  padding: 0.0625rem 0.5rem;
+  border-radius: 0.125rem;
+  border: 1px solid #222222;
+  -webkit-box-shadow: 1px 1px 0 #222222, 2px 2px 0 #d3d3d3;
+  box-shadow: 1px 1px 0 #222222, 2px 2px 0 #d3d3d3;
+  background: #6060ff;
+  color: white;
+}
+
+.keyboard-log kbd {
+  font-weight: 900;
+}
+
+/* #keyboard-log {
+    text-shadow: 0 0 1px white, 0 0 1px white, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black;
+} */
+
+.hidden {
+  display: none;
+}
