@@ -1,6 +1,35 @@
 let currentEvent = [{}];
 let charts = {};
 let hidden = true;
+const accessibilityConfig = {
+  good: {
+    elementsAreInterface: false,
+    disableValidation: true,
+    includeDataKeyNames: true,
+    onChangeFunc: () => {
+      monitorControllerNodes();
+      document.querySelector('data-table').classList.remove('hidden');
+    }
+  },
+  bad: {
+    elementsAreInterface: false,
+    disableValidation: true,
+    hideTextures: true,
+    keyboardNavConfig: {
+      disabled: true
+    },
+    hideDataTableButton: true,
+    title: 'chart',
+    executiveSummary: '.',
+    onChangeFunc: () => {
+      document.querySelectorAll('h3, h4, .vcl-region-label').forEach(h => {
+        h.remove();
+      });
+      document.querySelector('data-table').classList.add('hidden');
+      monitorControllerNodes();
+    }
+  }
+};
 const monitorAllEvents = (element, limited) => {
   const log = e => {
     const keyMap = {
@@ -34,11 +63,7 @@ const monitorAllEvents = (element, limited) => {
       );
     };
     const isCapsLock = keyLiteral => {
-      return (
-        keyLiteral === 'capslock' ||
-        keyLiteral === 'CapsLock' ||
-        keyLiteral === 'CAPSLOCK'
-      );
+      return keyLiteral === 'capslock' || keyLiteral === 'CapsLock' || keyLiteral === 'CAPSLOCK';
     };
     if (!limited && e.key && isValid(e.key) && (e.type === 'keyup' || (e.type === 'keydown' && isCapsLock(e.key)))) {
       let key = e.key;
@@ -62,16 +87,17 @@ const monitorAllEvents = (element, limited) => {
       currentEvent[0].count = currentEvent[0].rawCount;
       // }
       if (hidden) {
-          hidden = false
-          document.getElementById('keyboard-log').classList.remove('hidden')
+        hidden = false;
+        document.getElementById('keyboard-log').classList.remove('hidden');
       }
       document.getElementById('keyboard-log').innerText = currentEvent[0].key;
       document.getElementById('count').innerText = ` x ${currentEvent[0].count}`;
     } else if (e.key && (e.type === 'keyup' || e.type === 'keydown')) {
-      const target = document.getElementById(keyMap[e.key]);
-      if (target) {
-        target.classList[e.type === 'keyup' ? 'add' : 'remove']('hidden');
-      }
+      document.querySelectorAll(`.${keyMap[e.key]}`).forEach(target => {
+        if (target) {
+          target.classList[e.type === 'keyup' ? 'add' : 'remove']('hidden');
+        }
+      });
     }
   };
   var events = [];
@@ -85,11 +111,11 @@ const monitorAllEvents = (element, limited) => {
 };
 
 const monitorControllerNodes = () => {
-    const nodes = document.getElementById("chart-area-line").querySelectorAll('div')
-    nodes.forEach(node => {
-        monitorAllEvents(node, true)
-    })
-}
+  const nodes = document.getElementById('chart-area-line').querySelectorAll('div');
+  nodes.forEach(node => {
+    monitorAllEvents(node, true);
+  });
+};
 props = {
   'line-chart': {
     mainTitle: 'Product AC is trending up, Product AB is tanking',
@@ -111,14 +137,7 @@ props = {
     animationConfig: { disabled: true },
     highestHeadingLevel: 'h1',
     legend: { visible: false },
-    accessibility: {
-      elementsAreInterface: false,
-      disableValidation: true,
-      hideStrokes: false,
-      onChangeFunc: () => {
-          monitorControllerNodes()
-      }
-    },
+    accessibility: accessibilityConfig.good,
     data: [
       {
         clients: 12,
@@ -245,15 +264,15 @@ props = {
 };
 
 events = {
-    "line-chart": {
-        hoverEvent: (d) => {
-            charts["line-chart"].hoverHighlight = d
-        },
-        mouseOutEvent: () => {
-            charts["line-chart"].hoverHighlight = ""
-        }
+  'line-chart': {
+    hoverEvent: d => {
+      charts['line-chart'].hoverHighlight = d;
+    },
+    mouseOutEvent: () => {
+      charts['line-chart'].hoverHighlight = '';
     }
-}
+  }
+};
 const chartConstructor = (chartTag, id) => {
   charts[chartTag] = document.getElementById(id);
   if (!charts[chartTag]) {
@@ -263,16 +282,30 @@ const chartConstructor = (chartTag, id) => {
     charts[chartTag][prop] = props[chartTag][prop];
   });
   Object.keys(events[chartTag]).forEach(event => {
-    charts[chartTag].addEventListener(event, events[chartTag][event])
+    charts[chartTag].addEventListener(event, events[chartTag][event]);
   });
 };
-chartConstructor('line-chart', props['line-chart'].uniqueID);
-
-document.getElementById('line-insert').appendChild(charts["line-chart"]);
-
-if (navigator.platform.indexOf("Mac") === 0 || navigator.platform === "iPhone") {
-    document.getElementById('Alt').querySelector('kbd').innerText = 'Option'
+function toggleAccessibility(e) {
+  console.log('toggle accessibility', e);
+  charts['line-chart'].accessibility = accessibilityConfig[e.target.checked ? 'bad' : 'good'];
+  charts['line-chart'].suppressEvents = e.target.checked;
+}
+function toggleVoiceOver(e) {
+  if (e.target.checked) {
+    document.getElementById('Control').classList.add('Alt');
+    document.getElementById('Alt').classList.add('Control');
+  } else {
+    document.getElementById('Control').classList.remove('Alt');
+    document.getElementById('Alt').classList.remove('Control');
+  }
 }
 
-console.log('Hi! Welcome to our testing environment. :)');
+document.getElementById('voiceover-checkbox').addEventListener('change', toggleVoiceOver);
+document.getElementById('accessibility-checkbox').addEventListener('change', toggleAccessibility);
+chartConstructor('line-chart', props['line-chart'].uniqueID);
+document.getElementById('line-insert').appendChild(charts['line-chart']);
+if (navigator.platform.indexOf('Mac') === 0 || navigator.platform === 'iPhone') {
+  document.getElementById('Alt').querySelector('kbd').innerText = 'Option';
+}
 monitorAllEvents(window);
+console.log('Hi! Welcome to our testing environment. :)');

@@ -7,15 +7,28 @@
   </head>
   <body>
     <main>
+      <div>
+        <details>
+          <summary>Settings</summary>
+          <div>
+            <input class="checkbox" id="accessibility-checkbox" type="checkbox" />
+            <label for="accessibility-checkbox">Make this Chart Really Inaccessible</label>
+          </div>
+          <div>
+            <input class="checkbox" id="voiceover-checkbox" type="checkbox" />
+            <label for="voiceover-checkbox">I am using VoiceOver</label>
+          </div>
+        </details>
+      </div>
       <div id="line-insert"></div>
       <div>
         <p class="keyboard-log">
           Key log:
-          <span class="hidden" id="Shift"><kbd>Shift</kbd> + </span>
-          <span class="hidden" id="Control"><kbd>Control</kbd> + </span>
-          <span class="hidden" id="Alt"><kbd>Alt</kbd> + </span>
-          <span class="hidden" id="Command"><kbd>Command</kbd> + </span>
-          <kbd id="keyboard-log"></kbd>
+          <span class="hidden Control" id="Control"><kbd>Control</kbd> + </span>
+          <span class="hidden Alt" id="Alt"><kbd>Alt</kbd> + </span>
+          <span class="hidden Command" id="Command"><kbd>Command</kbd> + </span>
+          <span class="hidden Shift" id="Shift"><kbd>Shift</kbd> + </span>
+          <kbd class="hidden" id="keyboard-log"></kbd>
           <span id="count"></span>
         </p>
       </div>
