@@ -120,7 +120,7 @@ props = {
   'line-chart': {
     mainTitle: 'Product AC is trending up, Product AB is tanking',
     subTitle:
-      'Product AC initiated its launch with 12 clients and our internal marketing personnel cultivated 27 new acquisitions by the close of the calendar year. Product AB started with 42 clients and after a controversy in June, dropped to 4 by Decemeber.',
+      'Product AC initiated its launch with 12 clients and our internal marketing personnel cultivated 27 new acquisitions by the close of the calendar year. Product AB started with 42 clients and after a controversy in June, dropped to 4 by December.',
     valueAccessor: 'clients',
     ordinalAccessor: 'date',
     seriesAccessor: 'product',
@@ -141,22 +141,22 @@ props = {
     data: [
       {
         clients: 12,
-        date: 'Jan',
+        date: 'Jan.',
         product: 'AC'
       },
       {
         clients: 13,
-        date: 'Feb',
+        date: 'Feb.',
         product: 'AC'
       },
       {
         clients: 15,
-        date: 'Mar',
+        date: 'Mar.',
         product: 'AC'
       },
       {
         clients: 14,
-        date: 'Apr',
+        date: 'Apr.',
         product: 'AC'
       },
       {
@@ -166,57 +166,57 @@ props = {
       },
       {
         clients: 16,
-        date: 'Jun',
+        date: 'Jun.',
         product: 'AC'
       },
       {
         clients: 14,
-        date: 'Jul',
+        date: 'Jul.',
         product: 'AC'
       },
       {
         clients: 17,
-        date: 'Aug',
+        date: 'Aug.',
         product: 'AC'
       },
       {
         clients: 23,
-        date: 'Sep',
+        date: 'Sep.',
         product: 'AC'
       },
       {
         clients: 22,
-        date: 'Oct',
+        date: 'Oct.',
         product: 'AC'
       },
       {
         clients: 28,
-        date: 'Nov',
+        date: 'Nov.',
         product: 'AC'
       },
       {
         clients: 39,
-        date: 'Dec',
+        date: 'Dec.',
         product: 'AC'
       },
       {
         clients: 42,
-        date: 'Jan',
+        date: 'Jan.',
         product: 'AB'
       },
       {
         clients: 44,
-        date: 'Feb',
+        date: 'Feb.',
         product: 'AB'
       },
       {
         clients: 46,
-        date: 'Mar',
+        date: 'Mar.',
         product: 'AB'
       },
       {
         clients: 48,
-        date: 'Apr',
+        date: 'Apr.',
         product: 'AB'
       },
       {
@@ -226,37 +226,37 @@ props = {
       },
       {
         clients: 50,
-        date: 'Jun',
+        date: 'Jun.',
         product: 'AB'
       },
       {
         clients: 37,
-        date: 'Jul',
+        date: 'Jul.',
         product: 'AB'
       },
       {
         clients: 24,
-        date: 'Aug',
+        date: 'Aug.',
         product: 'AB'
       },
       {
         clients: 17,
-        date: 'Sep',
+        date: 'Sep.',
         product: 'AB'
       },
       {
         clients: 11,
-        date: 'Oct',
+        date: 'Oct.',
         product: 'AB'
       },
       {
         clients: 6,
-        date: 'Nov',
+        date: 'Nov.',
         product: 'AB'
       },
       {
         clients: 4,
-        date: 'Dec',
+        date: 'Dec.',
         product: 'AB'
       }
     ]
