@@ -8,6 +8,7 @@ const accessibilityConfig = {
     includeDataKeyNames: true,
     onChangeFunc: () => {
       monitorControllerNodes();
+      cleanup()
       document.querySelector('data-table').classList.remove('hidden');
     }
   },
@@ -25,6 +26,7 @@ const accessibilityConfig = {
       document.querySelectorAll('h3, h4, .vcl-region-label').forEach(h => {
         h.remove();
       });
+      cleanup()
       document.querySelector('data-table').classList.add('hidden');
       monitorControllerNodes();
     }
@@ -80,12 +82,7 @@ const monitorAllEvents = (element, limited) => {
           rawCount: 1
         });
       }
-      // if ((currentEvent[0].key === 'Spacebar' || currentEvent[0].key === 'tab' || currentEvent[0].key === 'TAB' || currentEvent[0].key === 'Tab') && !(currentEvent[0].rawCount % 2)) {
-      //     console.log("hehe")
-      //     currentEvent[0].count = currentEvent[0].rawCount/2
-      // } else {
       currentEvent[0].count = currentEvent[0].rawCount;
-      // }
       if (hidden) {
         hidden = false;
         document.getElementById('keyboard-log').classList.remove('hidden');
@@ -286,9 +283,13 @@ const chartConstructor = (chartTag, id) => {
   });
 };
 function toggleAccessibility(e) {
-  console.log('toggle accessibility', e);
   charts['line-chart'].accessibility = accessibilityConfig[e.target.checked ? 'bad' : 'good'];
   charts['line-chart'].suppressEvents = e.target.checked;
+  if (e.target.checked) {
+    document.getElementById("static-image").setAttribute("alt","image")
+  } else {
+    document.getElementById("static-image").setAttribute("alt","Product AC is trending up, Product AB is tanking. Line chart with two lines, starting in Jan. and ending in Dec. Long description: Product AC initiated its launch with 12 clients and our internal marketing personnel cultivated 27 new acquisitions by the close of the calendar year. Product AB started with 42 clients and after a controversy in June, dropped to 4 by December.")
+  }
 }
 function toggleVoiceOver(e) {
   if (e.target.checked) {
@@ -299,7 +300,26 @@ function toggleVoiceOver(e) {
     document.getElementById('Alt').classList.remove('Control');
   }
 }
+function toggleChart(e) {
+  document.getElementById("alt-checkbox").disabled = !e.target.checked
 
+  document.getElementById("static-chart").classList[e.target.checked ? 'add' : 'remove']("hidden")
+  document.getElementById("static-chart")[e.target.checked ? 'setAttribute' : 'removeAttribute']("role", "presentation")
+
+  document.getElementById("interactive-chart").classList[!e.target.checked ? 'add' : 'remove']("hidden")
+  document.getElementById("interactive-chart")[!e.target.checked ? 'setAttribute' : 'removeAttribute']("role", "presentation")
+}
+function toggleAlt(e) {
+  document.querySelectorAll('.screen-reader-info, .vcl-accessibility-instructions').forEach(d => d.classList[e.target.checked ? 'add' : 'remove']('sr-override'))
+}
+
+const cleanup = ()=> {
+  document.getElementById("chart-instructions-line").querySelectorAll('p, h3, h4').forEach(p => p.classList[!p.innerText ? 'add' : 'remove']('hidden'));
+  toggleAlt({target:{checked: document.getElementById('alt-checkbox').checked}})
+}
+
+document.getElementById('alt-checkbox').addEventListener('change', toggleAlt);
+document.getElementById('chart-checkbox').addEventListener('change', toggleChart);
 document.getElementById('voiceover-checkbox').addEventListener('change', toggleVoiceOver);
 document.getElementById('accessibility-checkbox').addEventListener('change', toggleAccessibility);
 chartConstructor('line-chart', props['line-chart'].uniqueID);

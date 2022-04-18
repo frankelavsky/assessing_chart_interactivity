@@ -5,9 +5,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#line-insert {
+/* #line-insert {
   display: inline-block;
-}
+} */
 
 #sparkline .line-legend,
 #sparkline h2,
@@ -47,4 +47,57 @@ kbd {
 
 .hidden {
   display: none;
+}
+
+img {
+  width: 100%;
+  padding-top: 15px;
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption {
+  padding-top: 30px;
+}
+
+.caption {
+  margin-top: 0px;
+}
+
+.sr-override {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: auto !important;
+  background: white;
+  padding: 10px;
+}
+
+.screen-reader-info {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: auto !important;
+  background: white;
+  padding: 10px;
+}
+
+.screen-reader-info:focus,.screen-reader-info:hover,.screen-reader-info:focus-visible,.sr-focus {
+  z-index: 9999;
+}
+
+.o-layout--chart {
+  background: white;
+  z-index: 0;
+}
+
+#chart-instructions-line h3:nth-of-type(1) {
+  font-size: 100%;
+  font-weight: normal;
 }

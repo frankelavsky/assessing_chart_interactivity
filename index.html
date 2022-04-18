@@ -11,6 +11,14 @@
         <details>
           <summary>Settings</summary>
           <div>
+            <input class="checkbox" id="chart-checkbox" type="checkbox" />
+            <label for="chart-checkbox">Make Chart Complex and Interactive</label>
+          </div>
+          <div id="alt-checkbox-wrapper">
+            <input class="checkbox" id="alt-checkbox" type="checkbox" disabled />
+            <label for="alt-checkbox"><i>(Complex Chart Only)</i> Show Hidden Alt Document</label>
+          </div>
+          <div>
             <input class="checkbox" id="accessibility-checkbox" type="checkbox" />
             <label for="accessibility-checkbox">Make this Chart Really Inaccessible</label>
           </div>
@@ -20,7 +28,16 @@
           </div>
         </details>
       </div>
-      <div id="line-insert"></div>
+      <div id="static-chart">
+        <figure>
+          <img id="static-image" src="./assets/chart.png" alt="Product AC is trending up, Product AB is tanking. Line chart with two lines, starting in Jan. and ending in Dec. Long description: Product AC initiated its launch with 12 clients and our internal marketing personnel cultivated 27 new acquisitions by the close of the calendar year. Product AB started with 42 clients and after a controversy in June, dropped to 4 by December.">
+          <figcaption>Figure 1: Last year's performance of Products AC and AB. Data is made possible by Sam Fol on the marketing data team.</figcaption>
+        </figure>
+      </div>
+      <div class="hidden" id="interactive-chart" role="presentation">
+        <div id="line-insert"></div>
+        <p class="caption">Figure 1: Last year's performance of Products AC and AB. Data is made possible by Sam Fol on the marketing data team.</p>
+      </div>
       <div>
         <p class="keyboard-log">
           Key log:
